@@ -5,14 +5,15 @@ Programa hecho por:
 el 28/noviembre/2018*/
 
 #include<stdio.h>
+#include<math.h>
 
 int main()
 {
 //declaracion de variables
 	FILE* fp;
-	int opcion,i;
+	int k, i, j, opcion;
 	float E[];
-	float x[3], y[3], Z[3];
+	float x[3], y[3], z[3], r[3];
 
 //escaneo de datos
 	fp=fopen("Datos.txt","r");
@@ -23,11 +24,13 @@ int main()
 	fclose(fp);
 
 //calcular los valores de r
+	k=0;
 	for(i=0;i<=3;i++)
 	{
 		for(j=i+1;j<=3;j++)
 		{
 		r[k]=sqrt(pow((x[i]-x[j]),2)+pow((y[i]-y[j]),2)+pow((z[i]-z[j]),2))
+		k++;
 		}
 	}
 
@@ -66,7 +69,7 @@ int main()
 
 		break;
 	default:
-		printf("No escojio una opcion valida\n");
+		printf("No seleccionó una opción válida\n");
 	}
 return 0;
 }
