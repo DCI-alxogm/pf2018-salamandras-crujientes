@@ -14,9 +14,11 @@ int main()
 //***********************************
 	FILE* fp;
 	int i, j, k, opcion;
-	int nD=3, nR=3, nDR=15; //valores de prueba
+	int num_lineas=3;  //valores de prueba
+	int nD=3, nR=3, nDR=15;  //valores de prueba
+	int DD[3], RR[3];  //tamaño de los arreglos solo de prueba
 	float E[];
-	float x[3], y[3], z[3], r[6]; //tamaño de los arreglos solo de prueba
+	float x[3], y[3], z[3], rD[3], rR[3];  //tamaño de los arreglos solo de prueba
 
 
 
@@ -24,7 +26,7 @@ int main()
 //	escaneo de Datos.txt
 //*******************************
 	fp=fopen("Datos.txt","r");
-	for(i=0;i<=3;i++)
+	for(i=0;i<num_lineas;i++)
 	{
 	fscanf("%f %f %f",x[i],y[i],z[i]);
 	}
@@ -32,15 +34,15 @@ int main()
 
 
 
-//*************************************
-//	calcular los valores de r
-//*************************************
+//*************************************************
+//	calcular los valores de r de Datos.txt
+//*************************************************
 	k=0;
-	for(i=0;i<=3;i++)
+	for(i=0;i<3;i++)
 	{
-		for(j=i+1;j<=3;j++)
+		for(j=i+1;j<3;j++)
 		{
-		r[k]=sqrt(pow((x[i]-x[j]),2)+pow((y[i]-y[j]),2)+pow((z[i]-z[j]),2))
+		rD[k]=sqrt(pow((x[i]-x[j]),2)+pow((y[i]-y[j]),2)+pow((z[i]-z[j]),2));
 		k++;
 		}
 	}
@@ -51,7 +53,7 @@ int main()
 //	escaneo de Aleatorios.txt
 //***********************************
 	fp=fopen("Aleatorios.txt","r");
-	for(i=0;i<=3;i++)
+	for(i=0;i<num_lineas;i++)
 	{
 	fscanf("%f %f %f",x[i],y[i],z[i]);
 	}
@@ -59,28 +61,55 @@ int main()
 
 
 
-//*************************************
-//	calcular los valores de r
-//*************************************
-	for(i=0;i<=3;i++)
+//*******************************************************
+//	calcular los valores de r de Aleatorios.txt
+//*******************************************************
+	k=0;
+	for(i=0;i<3;i++)
 	{
-		for(j=i+1;j<=3;j++)
+		for(j=i+1;j<3;j++)
 		{
-		r[k]=sqrt(pow((x[i]-x[j]),2)+pow((y[i]-y[j]),2)+pow((z[i]-z[j]),2))
+		rR[k]=sqrt(pow((x[i]-x[j]),2)+pow((y[i]-y[j]),2)+pow((z[i]-z[j]),2));
 		k++;
 		}
 	}
 
 
 
-//**********************************************************************
-//	ordenamos los valores de r y agrupamos los que son iguales
-//**********************************************************************
+//***********************************************************
+//	ordenamos los valores de rD del menor al mayor
+//***********************************************************
+	for(i=0;i<3;i++)
+	{
+		for(j=i+1;j<3;j++)
+		{
+			if(rD[j]<rD[i])
+			{
+			k=rD[i];
+			rD[i]=rD[j];
+			rD[j]=k;
+			}
+		}
+	}
 
 
 
+//***********************************************************
+//	ordenamos los valores de rR del menor al mayor
+//***********************************************************
+	for(i=0;i<3;i++)
+	{
+		for(j=i+1;j<3;j++)
+		{
+			if(rR[j]<rR[i])
+			{
+			k=rR[i];
+			rR[i]=rR[j];
+			rR[j]=k;
+			}
+		}
+	}
 
-	
 
 
 //************************************************
