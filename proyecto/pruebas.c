@@ -2,10 +2,21 @@
 
 int main()
 {
-float a=2, b=0, c;
 
-c=a/b;
-printf("%f\n",c);
+
+
+
+
+
+
+for(i=0;i<;i++)
+{
+E[i]=(DD[][]/RR[][])-1
+}
+
+
+
+
 
 return 0;
 }

@@ -41,6 +41,7 @@ int main()
 	{
 	nD=nD+i;
 	}
+
 	nDR=num_lineas;
 
 
@@ -90,7 +91,13 @@ int main()
 	{
 	nR=nR+i;
 	}
-	nDR=nDR+num_lineas;
+
+	num_lineas+=nDR;
+	nDR=0;
+	for(i=num_lineas-1;i>0;i--)
+	{
+	nDR+=i;
+	}
 
 
 
@@ -178,7 +185,7 @@ int main()
 		fclose(fp);
 		break;
 	case 2:	
-		E[r]=((DD[r]/nD)-(2*DR[r]/nDR)-(RR[r]/nR))/(RR[r]/nR);
+		E[r]=((DD[r]/nD)-(2*DR[r]/nDR)+(RR[r]/nR))/(RR[r]/nR);
 
 
 
