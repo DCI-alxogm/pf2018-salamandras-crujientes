@@ -7,15 +7,17 @@ el 28/noviembre/2018*/
 #include<stdio.h>
 #include<math.h>
 
-int main(int bin, int opcion, int L, char nombre[40])
+int main()
 {
 //***********************************
 //	declaracion de variables
 //***********************************
 	FILE* fp;
+int bin=1, opcion=1, L=12;
+	int a, b;
 	int i, j, k;
 	int num_lineas1, num_lineas2;
-	int nD, nR, nDR;
+	int nD=0, nR=0, nDR=0;
 	int DD[L/bin], RR[L/bin], DR[L/bin];
 	float E;
 	char ch;
@@ -35,17 +37,18 @@ int main(int bin, int opcion, int L, char nombre[40])
 		}
 	}
 	fclose(fp);
+
 	float x1[num_lineas1], y1[num_lineas1], z1[num_lineas1];
 
 	//calculamos nD
-	for(i=num_lineas1-1;i>0;i--)
+	for(i=(num_lineas1-1);i>0;i--)
 	{
 	nD=nD+i;
 	}
 	//inicializamos rD siendo mayor que la r maxima
 	float rD[nD];
 	for(i=0;i<nD;i++){
-	rD[i]=sqrt(3*L*L)+1;}
+	rD[i]=(sqrt(3*L*L)+1);}
 
 
 
@@ -264,7 +267,7 @@ int main(int bin, int opcion, int L, char nombre[40])
 //*******************************************************
 //	valores del histograma DD con tamaño de bin
 //*******************************************************
-	for(j=bin;j<L/bin;j+=bin)
+	for(j=bin;j<=L/bin;j+=bin)
 	{
 		for(i=0;i<nD;i++)
 		{
@@ -280,7 +283,7 @@ int main(int bin, int opcion, int L, char nombre[40])
 //*******************************************************
 //	valores del histograma RR con tamaño de bin
 //*******************************************************
-	for(j=bin;j<L/bin;j+=bin)
+	for(j=bin;j<=L/bin;j+=bin)
 	{
 		for(i=0;i<nR;i++)
 		{
@@ -296,7 +299,7 @@ int main(int bin, int opcion, int L, char nombre[40])
 //*******************************************************
 //	valores del histograma DR con tamaño de bin
 //*******************************************************
-	for(j=bin;j<L/bin;j+=bin)
+	for(j=bin;j<=(L/bin);j+=bin)
 	{
 		for(i=0;i<nDR;i++)
 		{
@@ -316,22 +319,40 @@ int main(int bin, int opcion, int L, char nombre[40])
 	{
 	case 1:	//estimador simple
 		fp=fopen("Resultados_Estimador.txt","w");
-		for(i=0;i<L/bin;i++)
+		for(i=0;i<(L/bin);i++)
 		{
-		fprintf(fp,"%i-%i \t",bin*i,bin*(i+1));
-		E=((nR/nD)*(DD[i]/RR[i]))-1;
-		fprintf(fp,"%f\n",E);
+		a=(bin*i);
+		b=(bin*(i+1));
+		fprintf(fp,"%i-%i \t",a,b);
+			if(RR[i]!=0)
+			{
+				E=((nR/nD)*(DD[i]/RR[i]))-1;
+				fprintf(fp,"%f\n",E);
+			}
+			else
+			{
+				fprintf(fp,"inf\n");
+			}
 		}
 		fclose(fp);
 		break;
 
 	case 2:	//estimador de landy-szalay
 		fp=fopen("Resultados_Estimador.txt","w");
-		for(i=0;i<L/bin;i++)
+		for(i=0;i<(L/bin);i++)
 		{
-		fprintf(fp,"%i-%i \t",bin*i,bin*(i+1));
-		E=((DD[i]/nD)-(2*DR[i]/nDR)+(RR[i]/nR))/(RR[i]/nR);
-		fprintf(fp,"%f\n",E);
+		a=(bin*i);
+		b=(bin*(i+1));
+		fprintf(fp,"%i-%i \t",a,b);
+			if(RR[i]!=0)
+			{
+				E=((DD[i]/nD)-(2*DR[i]/nDR)+(RR[i]/nR))/(RR[i]/nR);
+				fprintf(fp,"%f\n",E);
+			}
+			else
+			{
+				fprintf(fp,"inf\n");
+			}
 		}
 		fclose(fp);
 		break;
