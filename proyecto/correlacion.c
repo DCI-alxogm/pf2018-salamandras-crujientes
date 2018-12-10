@@ -319,7 +319,7 @@ int main(int argc, char *argv[])
 	switch(opcion)
 	{
 	case 1:	//estimador simple
-		fp=fopen("Resultados_Estimador.txt","w");
+		fp=fopen("Resultados_Datos.txt","w");
 		for(i=0;i<(L/bin);i++)
 		{
 		a=(bin*i);
@@ -339,7 +339,7 @@ int main(int argc, char *argv[])
 		break;
 
 	case 2:	//estimador de landy-szalay
-		fp=fopen("Resultados_Estimador.txt","w");
+		fp=fopen("Resultados_Datos.txt","w");
 		for(i=0;i<(L/bin);i++)
 		{
 		a=(bin*i);
