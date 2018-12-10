@@ -5,15 +5,16 @@ Programa hecho por:
 el 28/noviembre/2018*/
 
 #include<stdio.h>
+#include<stdlib.h>
 #include<math.h>
 
-int main()
+int main(int argc, char *argv[])
 {
 //***********************************
 //	declaracion de variables
 //***********************************
 	FILE* fp;
-int bin=1, opcion=1, L=12;
+	int L=atoi(argv[1]), bin=atoi(argv[2]), opcion=atoi(argv[3]);
 	int a, b;
 	int i, j, k;
 	int num_lineas1, num_lineas2;
